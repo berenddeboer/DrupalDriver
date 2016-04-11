@@ -121,6 +121,31 @@ class DrushDriver extends BaseDriver {
   /**
    * {@inheritdoc}
    */
+  public function userInformation($match) {
+    $arguments = array(
+      sprintf('"%s"', $match),
+    );
+    $user = NULL;
+    try {
+      $output = $this->drush('user-information', $arguments);
+      if (preg_match ('/User ID[ ]+:[ ]+([0-9]+).*User name[ ]+:[ ]+(.+).*User mail[ ]+:[ ]+(.+).*User roles.*User status[ ]+:[ ]+(.*)/s', $output, $matches)) {
+        $user = (object) array (
+          'uid' => $matches[1],
+          'name' => $matches[2],
+          'mail' => $matches[3],
+          'status' => $matches[4] == 'active' ? 1 : 0,
+        );
+      }
+    }
+    catch (\RuntimeException $e) {
+      // Ignore, means user not found.
+    }
+    return $user;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function userCreate(\stdClass $user) {
     $arguments = array(
       sprintf('"%s"', $user->name),

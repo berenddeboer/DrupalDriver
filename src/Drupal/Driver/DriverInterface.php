@@ -23,6 +23,13 @@ interface DriverInterface {
   public function isBootstrapped();
 
   /**
+   * Retrieve information about a user, or NULL when not found.
+   * @param string $match
+   *   $match is either a user uid, an email address or a name.
+   */
+  public function userInformation($match);
+
+  /**
    * Creates a user.
    */
   public function userCreate(\stdClass $user);

@@ -90,6 +90,22 @@ class DrupalDriver implements DriverInterface, SubDriverFinderInterface {
   }
 
   /**
+   * {@inheritDoc}
+   */
+  public function userInformation($match) {
+    if (strpos ($match, '@')) {
+      $user = user_load_by_mail ($match);
+    }
+    elseif (is_numeric ($match)) {
+      $user = user_load ($match);
+    }
+    else {
+      $user = user_load_by_name ($match);
+    }
+    return $user;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function userCreate(\stdClass $user) {

@@ -31,6 +31,13 @@ abstract class BaseDriver implements DriverInterface {
   /**
    * {@inheritdoc}
    */
+  public function userInformation($match) {
+    throw new UnsupportedDriverActionException($this->errorString('user information'), $this);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function userCreate(\stdClass $user) {
     throw new UnsupportedDriverActionException($this->errorString('create users'), $this);
   }
