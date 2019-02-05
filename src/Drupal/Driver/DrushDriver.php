@@ -251,8 +251,17 @@ class DrushDriver extends BaseDriver {
    * {@inheritdoc}
    */
   public function clearCache($type = 'all') {
-    $type = array($type);
-    return $this->drush('cache-clear', $type, array());
+    if (self::$isLegacyDrush) {
+      $type = array($type);
+      return $this->drush('cache-clear', $type, array());
+    }
+    if (($type == 'all') || ($type == 'drush')) {
+      $this->drush('cache-clear', array('drush'), array());
+      if ($type == 'drush') {
+        return;
+      }
+    }
+    return $this->drush('cache:rebuild');
   }
 
   /**
@@ -281,6 +290,29 @@ class DrushDriver extends BaseDriver {
     // Remove anything after the last '}'.
     $output = preg_replace('/[^\}]*$/s', '', $output);
     return json_decode($output);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function createEntity($entity_type, \StdClass $entity) {
+    $options = array(
+      'entity_type' => $entity_type,
+      'entity' => $entity,
+    );
+    $result = $this->drush('behat', array('create-entity', escapeshellarg(json_encode($options))), array());
+    return $this->decodeJsonObject($result);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function entityDelete($entity_type, \StdClass $entity) {
+    $options = array(
+      'entity_type' => $entity_type,
+      'entity' => $entity,
+    );
+    $this->drush('behat', array('delete-entity', escapeshellarg(json_encode($options))), array());
   }
 
   /**

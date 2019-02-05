@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [2.0.0 alpha6] 2018-09-21
+### Added
+  * [#190](https://github.com/jhedstrom/DrupalDriver/pull/190) Added Drush entity support.
+  * [#168](https://github.com/jhedstrom/DrupalDriver/issues/168) Added ListHandlers for Drupal 8.
+### Changed
+  * [#203](https://github.com/jhedstrom/DrupalDriver/pull/203) Removes testing of HHVM.
+## [2.0.0 alpha5] 2018-09-21
+### Fixed
+  * [#199](https://github.com/jhedstrom/DrupalDriver/pull/199): Fixes type
+    introduced in #198.
+## [2.0.0 alpha4] 2018-09-21
+### Added
+  * [#191](https://github.com/jhedstrom/DrupalDriver/pull/191): Adds field
+    handler for address fields.
+  * [#196](https://github.com/jhedstrom/DrupalDriver/pull/196): Add a
+    storeOriginalConfiguration method.
+  * [#197](https://github.com/jhedstrom/DrupalDriver/pull/197): Added a method
+    configGetOriginal which will return the original config data.
+### Fixed
+  * [#193](https://github.com/jhedstrom/DrupalDriver/pull/193): Fixing the
+    ListTextHandler to allow a key to also be 0
+  * [#198](https://github.com/jhedstrom/DrupalDriver/pull/198): Use
+    cache:rebuild instead of cache-clear all with Drush 9.
 ## [2.0.0 alpha3] 2018-06-21
 ### Added
   * [#89](https://github.com/jhedstrom/DrupalDriver/pull/89): Adds Embridge asset
@@ -61,7 +84,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
     docblock for `CoreInterface::roleCreate`.
 
 
-[Unreleased]: https://github.com/jhedstrom/DrupalDriver/compare/v2.0.0-alpha3...HEAD
+[Unreleased]: https://github.com/jhedstrom/DrupalDriver/compare/v2.0.0-alpha6...HEAD
+[2.0.0 alpha6]: https://github.com/jhedstrom/DrupalDriver/compare/v2.0.0-alpha5...HEAD
+[2.0.0 alpha5]: https://github.com/jhedstrom/DrupalDriver/compare/v2.0.0-alpha4...v2.0.0-alpha5
+[2.0.0 alpha4]: https://github.com/jhedstrom/DrupalDriver/compare/v2.0.0-alpha3...v2.0.0-alpha4
 [2.0.0 alpha3]: https://github.com/jhedstrom/DrupalDriver/compare/v2.0.0-alpha2...v2.0.0-alpha3
 [2.0.0 alpha2]: https://github.com/jhedstrom/DrupalDriver/compare/v2.0.0-alpha1...v2.0.0-alpha2
 [2.0.0 alpha1]: https://github.com/jhedstrom/DrupalDriver/compare/v1.4.0...v2.0.0-alpha1
