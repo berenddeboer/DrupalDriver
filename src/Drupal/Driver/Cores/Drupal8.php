@@ -239,7 +239,7 @@ class Drupal8 extends AbstractCore {
    * {@inheritdoc}
    */
   public function userDelete(\stdClass $user) {
-    user_cancel(array(), $user->uid, 'user_cancel_delete');
+    user_delete($user->uid);
   }
 
   /**
